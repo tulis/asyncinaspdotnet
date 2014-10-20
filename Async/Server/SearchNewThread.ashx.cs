@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 
 namespace Server
@@ -7,9 +8,10 @@ namespace Server
     {
         public async override Task ProcessRequestAsync( HttpContext context )
         {
-            var result = await Task.Run( async () => await FileReader.Search( "cip-cip" ) );
+            var searchTasks = Enumerable.Range(0, 3).Select(async index => await FileReader.SearchInNewThreadAsync("cip-cip")).ToList();
+            await Task.WhenAll(searchTasks);
             context.Response.ContentType = "text/plain";
-            context.Response.Write( result );
+            context.Response.Write(searchTasks.First().Result);
         }
     }
 }

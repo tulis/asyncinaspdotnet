@@ -6,10 +6,10 @@ namespace Server
 {
     public static class FileReader
     {
-        public static async Task<string> Search( string item )
+        const string filePath = @"C:\Users\tanris\Documents\asyncinaspdotnet\Async\Server\data_2012";
+
+        public static async Task<string> SearchAsync( string item )
         {
-            const string filePath = @"D:\data_2012";
-            var numberOfLines = File.ReadAllLines( filePath ).Length;
             using( var fileStream = new FileStream(
                 filePath,
                 FileMode.Open,
@@ -30,6 +30,21 @@ namespace Server
 
                 return "Record not found";
             }
+        }
+
+        public static async Task<string> SearchInNoThreadAsync(string item)
+        {
+            var numberOfLines = File.ReadAllLines(filePath).Length;
+            return await SearchAsync(item);
+        }
+
+        public static async Task<string> SearchInNewThreadAsync(string item)
+        {
+            return await Task.Run(async () =>
+            {
+                var numberOfLines = File.ReadAllLines(filePath).Length;
+                return await SearchAsync(item);
+            });
         }
     }
 }

@@ -1,3 +1,6 @@
+Migrating from https://asyncinaspdotnet.codeplex.com/ as CodePlex will be closed on December 2017
+
+
 ## Project Description
 This is project is not really about how to use async await in ASP.NET and not about the performance testing on await. This is more about whether we should use async for CPU bound in ASP.NET other than I/O bound.
 
@@ -119,3 +122,6 @@ I did not bother to include 500 requests in SearchNewThread because with 450 req
 One key concept to note here is 1 CPU can only execute one thread at a time only. There will be always a cost on having many threads i.e. the context-switching. So, anyone who wants to create new thread for CPU bound, please re-think again. There are very rare situations where you want to create new thread for CPU bound. However, please do use async for any I/O bound so that the CPU won't be blocked while waiting for the response.
 
 Quite useful article by [Thomas Marquardt on Performing Asynchronous Work, or Tasks, in ASP.NET Applications](http://blogs.msdn.com/b/tmarq/archive/2010/04/14/performing-asynchronous-work-or-tasks-in-asp-net-applications.aspx). Even though it is an old article, the concept is still remained until today. 
+
+
+Last edited Oct 18, 2014 at 9:07 PM

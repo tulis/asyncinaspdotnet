@@ -19,11 +19,11 @@ However, there are also people think that by creating new thread, the server can
 
 #### How to run
 * Server
-** Server can be run in IIS Express
+  * Server can be run in IIS Express
 * Client
-** client {"[number_of_requests]"} {"[url]"}
-** client 100 "http://localhost/SearchNoThread.ashx"
-** client 100 "http://localhost/SearchNewThread.ashx"
+  * client [number_of_requests] [url]
+  * client 100 "http://localhost/SearchNoThread.ashx"
+  * client 100 "http://localhost/SearchNewThread.ashx"
 
 
 #### Results
